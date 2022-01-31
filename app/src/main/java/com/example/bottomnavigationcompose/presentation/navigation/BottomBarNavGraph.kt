@@ -6,6 +6,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.bottomnavigationcompose.presentation.features.home.HomeScreen
 import com.example.bottomnavigationcompose.presentation.features.profile.ProfileScreen
+import com.example.bottomnavigationcompose.presentation.features.setting.AccountSettingScreen
+import com.example.bottomnavigationcompose.presentation.features.setting.GeneralSettingScreen
 import com.example.bottomnavigationcompose.presentation.features.setting.SettingScreen
 
 @Composable
@@ -16,6 +18,18 @@ fun BottomBarNavGraph(navController: NavHostController) {
     ) {
         composable(route = BottomNavigationDestinations.Home.route) { HomeScreen() }
         composable(route = BottomNavigationDestinations.Profile.route) { ProfileScreen() }
-        composable(route = BottomNavigationDestinations.Setting.route) { SettingScreen() }
+        composable(route = BottomNavigationDestinations.Setting.route) { SettingScreen(navController) }
+
+        composable(route = ScreenDestinations.GeneralSetting.route) {
+            GeneralSettingScreen(
+                navController
+            )
+        }
+        composable(route = ScreenDestinations.AccountSetting.route) {
+            AccountSettingScreen(
+                navController
+            )
+        }
+
     }
 }

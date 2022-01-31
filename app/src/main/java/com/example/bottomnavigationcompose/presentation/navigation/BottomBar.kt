@@ -15,18 +15,26 @@ fun BottomBar(navController: NavHostController) {
         BottomNavigationDestinations.Profile,
         BottomNavigationDestinations.Setting
     )
+    val screenRoute = listOf(
+        BottomNavigationDestinations.Home.route,
+        BottomNavigationDestinations.Profile.route,
+        BottomNavigationDestinations.Setting.route
+    )
     //2. nav back stack
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     //3. currentRoute
     val currentRoute = navBackStackEntry?.destination
     //4. bottom navigation
-    BottomNavigation {
-        screens.forEach {
-            AddBottomBarItem(
-                screen = it,
-                currentRoute = currentRoute,
-                navController = navController
-            )
+    if (screenRoute.contains(navController.currentDestination?.route)) {
+        BottomNavigation {
+            screens.forEach {
+                AddBottomBarItem(
+                    screen = it,
+                    currentRoute = currentRoute,
+                    navController = navController
+                )
+            }
         }
     }
+
 }
